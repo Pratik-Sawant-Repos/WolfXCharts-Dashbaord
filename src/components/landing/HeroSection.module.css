@@ -18,10 +18,26 @@
   z-index: 10;
 }
 
+/* Left Content */
 .content {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.5rem;
+}
+
+.topBadge {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  backdrop-filter: blur(10px);
 }
 
 .title {
@@ -37,7 +53,6 @@
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  display: block;
 }
 
 .subtitle {
@@ -45,39 +60,94 @@
   color: var(--text-secondary);
   line-height: 1.7;
   max-width: 600px;
+  margin-bottom: 1rem;
 }
 
 .actions {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
-.badges {
+.primaryBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--grad-blue-purple);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 1.125rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+}
+
+.primaryBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.6);
+}
+
+.primaryBtn:hover .btnIcon {
+  transform: translateX(4px);
+}
+
+.btnIcon {
+  transition: transform 0.3s ease;
+}
+
+.secondaryBtn {
+  display: inline-flex;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  font-weight: 600;
+  color: var(--text-primary);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.secondaryBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.trustIndicators {
   display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  margin-top: 2rem;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
 }
 
-.badgeItem {
+.trustItem {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: var(--text-tertiary);
   font-size: 0.875rem;
+  color: var(--text-tertiary);
   font-weight: 500;
+  transition: color 0.3s ease;
 }
 
-.checkIcon {
-  color: var(--accent-green);
+.trustItem:hover {
+  color: var(--text-primary);
 }
 
-/* 3D Dashboard Preview (Right Side) */
+.trustIcon {
+  color: var(--accent-cyan);
+}
+
+/* Right Content: Animated Dashboard Preview */
 .previewArea {
   position: relative;
-  height: 600px;
-  perspective: 1000px;
+  height: 700px;
+  perspective: 1500px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -90,39 +160,157 @@
   transform-style: preserve-3d;
 }
 
-.mainCard {
+.glassCard {
   position: absolute;
+  background: var(--bg-surface);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.cardTitle {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.cardIcon {
+  color: var(--text-tertiary);
+}
+
+.cardValue {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+  font-family: var(--font-jakarta);
+}
+
+.cardChange {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.positive { color: var(--accent-green); }
+.negative { color: var(--accent-red); }
+
+/* Specific Cards */
+.cardMain {
   top: 50%;
   left: 50%;
-  width: 120%;
-  max-width: 800px;
-  border-radius: var(--radius-xl);
-  border: 1px solid var(--border-light);
-  box-shadow: var(--shadow-glow-blue);
+  width: 500px;
+  height: 350px;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.15);
+}
+
+.chartPlaceholder {
+  flex: 1;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(180deg, rgba(59, 130, 246, 0.1) 0%, transparent 100%);
+  border-bottom: 2px solid var(--accent-blue);
+  position: relative;
   overflow: hidden;
-  background: var(--bg-surface-solid);
+  margin-top: 1rem;
 }
 
-.mainCardImage {
-  width: 100%;
-  height: auto;
-  display: block;
+.cardPnL {
+  top: 15%;
+  left: -5%;
+  width: 240px;
+  z-index: 10;
 }
 
-.floatingCard1 {
-  position: absolute;
+.cardWinRate {
   top: 10%;
+  right: -5%;
+  width: 200px;
+  z-index: 8;
+}
+
+.cardAI {
+  bottom: 20%;
   right: -10%;
   width: 280px;
-  z-index: 20;
+  z-index: 15;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
 }
 
-.floatingCard2 {
+.aiInsightText {
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+.aiHighlight {
+  color: var(--accent-purple);
+  font-weight: 600;
+}
+
+.cardRecent {
+  bottom: 10%;
+  left: -10%;
+  width: 260px;
+  z-index: 12;
+}
+
+.tradeRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.tradeRow:last-child {
+  border-bottom: none;
+}
+
+.tradeSymbol {
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.tradeTime {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+}
+
+.tradeProfit {
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+/* Particles */
+.particles {
   position: absolute;
-  bottom: 20%;
-  left: -20%;
-  width: 320px;
-  z-index: 20;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent-blue);
+  box-shadow: 0 0 10px var(--accent-blue);
+  opacity: 0.5;
 }
 
 @media (max-width: 1024px) {
@@ -130,19 +318,26 @@
     grid-template-columns: 1fr;
     text-align: center;
   }
+  .topBadge {
+    align-self: center;
+  }
   .content {
     align-items: center;
   }
-  .badges {
-    align-items: center;
+  .subtitle {
+    margin: 0 auto 1.5rem;
+  }
+  .trustIndicators {
+    justify-content: center;
   }
   .previewArea {
-    height: 400px;
+    height: 500px;
   }
-  .mainCard {
-    width: 100%;
-  }
-  .floatingCard1, .floatingCard2 {
+  .cardPnL, .cardWinRate, .cardAI, .cardRecent {
     display: none;
+  }
+  .cardMain {
+    width: 100%;
+    max-width: 500px;
   }
 }

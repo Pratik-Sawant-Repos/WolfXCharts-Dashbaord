@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { BookOpen, LineChart, ShieldCheck, Cpu, LayoutTemplate, Briefcase } from 'lucide-react';
 import styles from './WhySection.module.css';
 
@@ -46,7 +46,7 @@ const containerVariant = {
   },
 };
 
-const cardVariant: any = {
+const cardVariant: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
 };

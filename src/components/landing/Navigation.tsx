@@ -7,8 +7,9 @@ import { Button } from '@/components/ui/Button/Button';
 import styles from './Navigation.module.css';
 
 const LINKS = [
+  { label: 'Home', href: '/' },
   { label: 'Features', href: '#features' },
-  { label: 'Analytics', href: '#analytics' },
+  { label: 'Dashboard', href: '#dashboard' },
   { label: 'Pricing', href: '#pricing' },
   { label: 'Community', href: '#community' },
   { label: 'Documentation', href: '#' },

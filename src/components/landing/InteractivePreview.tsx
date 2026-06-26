@@ -5,7 +5,9 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
 import styles from './InteractivePreview.module.css';
 
-const BrowserWindow = ({ className, style, zIndex }: { className: string, style?: any, zIndex?: number }) => (
+import { MotionStyle } from 'framer-motion';
+
+const BrowserWindow = ({ className, style, zIndex }: { className: string, style?: MotionStyle, zIndex?: number }) => (
   <motion.div className={`${styles.browserWindow} ${className}`} style={{ ...style, zIndex }}>
     <div className={styles.browserHeader}>
       <div className={`${styles.dot} ${styles.red}`} />
