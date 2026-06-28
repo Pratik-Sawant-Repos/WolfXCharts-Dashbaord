@@ -1,0 +1,469 @@
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background-color: transparent;
+  color: var(--text-primary);
+  min-height: 100vh;
+}
+
+/* Header */
+.headerRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.pageTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.pageSubtitle {
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+}
+
+.headerActions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.btnSecondary {
+  background: transparent;
+  border: 1px solid var(--border-strong);
+  color: var(--text-primary);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.btnSecondary:hover {
+  background: var(--bg-surface);
+}
+
+/* Tabs */
+.tabsRow {
+  display: flex;
+  gap: 1.5rem;
+  border-bottom: 1px solid var(--border-light);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.tabsRow::-webkit-scrollbar {
+  display: none;
+}
+
+.tab {
+  padding: 0.75rem 0;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+}
+
+.tabActive {
+  color: var(--primary-color);
+  border-bottom-color: var(--primary-color);
+}
+
+/* Main Grid */
+.mainGrid {
+  display: grid;
+  grid-template-columns: 2.5fr 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Indices Cards Row */
+.indicesRow {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+}
+
+.indexCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.indexName {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.indexVal {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.indexChange {
+  font-size: 0.65rem;
+  font-weight: 600;
+}
+
+.valGreen {
+  color: var(--success-color);
+}
+
+.valRed {
+  color: #EF4444;
+}
+
+.sparklineWrapper {
+  margin-top: 0.5rem;
+  height: 24px;
+  width: 100%;
+}
+
+/* Section Container */
+.sectionContainer {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.sectionTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sectionFilters {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.filterBadge {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  color: var(--text-secondary);
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.65rem;
+  cursor: pointer;
+}
+.filterBadgeActive {
+  background: rgba(255,255,255,0.1);
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+}
+
+/* Heatmap Grid */
+.heatmapContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(100px, auto);
+  gap: 2px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.sectorBlock {
+  background: var(--bg-surface);
+  display: flex;
+  flex-direction: column;
+}
+
+.sectorHeader {
+  font-size: 0.6rem;
+  font-weight: 700;
+  padding: 0.4rem;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  background: rgba(0,0,0,0.2);
+}
+
+.stocksGrid {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.stockBlock {
+  flex: 1;
+  min-width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  border: 1px solid rgba(0,0,0,0.1);
+  color: white;
+  transition: opacity 0.2s;
+}
+
+.stockBlock:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.stockBlockSym {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.stockBlockChange {
+  font-size: 0.65rem;
+  font-weight: 600;
+}
+
+/* Right Sidebar Cards */
+.sidebarCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 1.25rem;
+}
+
+.cardTitle {
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.viewAll {
+  font-size: 0.75rem;
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.listRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.listRow:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.listSymbol {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.stockIcon {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.55rem;
+  font-weight: 700;
+}
+
+.listValGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+}
+
+/* Gauge Chart */
+.gaugeContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 1rem 0;
+}
+
+.gaugeWrapper {
+  width: 120px;
+  height: 120px;
+  position: relative;
+}
+
+.gaugeCenter {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.gaugeVal {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.gaugeLabel {
+  font-size: 0.65rem;
+  color: var(--text-secondary);
+}
+
+.gaugeLegend {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.gaugeLegendItem {
+  font-size: 0.65rem;
+  display: flex;
+  flex-direction: column;
+}
+.gaugeLegendName {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--text-secondary);
+}
+.gaugeLegendNum {
+  font-weight: 700;
+  margin-left: 1rem;
+}
+
+/* Global Markets Grid */
+.globalGrid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1rem;
+}
+
+/* News */
+.newsItem {
+  display: flex;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.newsItem:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.newsImg {
+  width: 48px;
+  height: 48px;
+  border-radius: 6px;
+  background: var(--border-light);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.newsImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.newsContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.newsTitle {
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.newsMeta {
+  font-size: 0.65rem;
+  color: var(--text-secondary);
+}
+
+/* Skeleton Loading state */
+.skeletonCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  padding: 1rem;
+  height: 100px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 0.3; }
+  100% { opacity: 0.6; }
+}
+
+/* Responsive */
+@media (max-width: 1400px) {
+  .indicesRow {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .globalGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .heatmapContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 1024px) {
+  .mainGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .indicesRow, .globalGrid, .heatmapContainer {
+    grid-template-columns: 1fr;
+  }
+  .headerRow {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

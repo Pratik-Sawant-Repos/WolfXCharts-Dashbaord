@@ -1,57 +1,42 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Link from 'next/link';
-import clsx from 'clsx';
-import { Button } from '@/components/ui/Button/Button';
+import { motion } from 'framer-motion';
 import styles from './Navigation.module.css';
 
-const LINKS = [
-  { label: 'Home', href: '/' },
-  { label: 'Features', href: '#features' },
-  { label: 'Dashboard', href: '#dashboard' },
-  { label: 'Pricing', href: '#pricing' },
-  { label: 'Community', href: '#community' },
-  { label: 'Documentation', href: '#' },
-];
-
 export function Navigation() {
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   return (
-    <header className={clsx(styles.navHeader, scrolled && styles.scrolled)}>
-      <div className={styles.container}>
+    <motion.nav 
+      className={styles.navbar}
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+    >
+      <div className={styles.navContainer}>
+        {/* Left: Logo */}
         <Link href="/" className={styles.logo}>
-          WolfXCharts Pro
+          <span className={styles.logoIcon}></span>
+          <span className={styles.logoText}>WolfXCharts</span>
         </Link>
-        
-        <nav className={styles.navLinks}>
-          {LINKS.map((link) => (
-            <Link key={link.label} href={link.href} className={styles.link}>
-              {link.label}
-            </Link>
-          ))}
-        </nav>
 
-        <div className={styles.actions}>
-          <Link href="/login" className={styles.link} style={{ marginRight: '1rem' }}>
-            Login
-          </Link>
-          <Link href="/dashboard">
-            <Button variant="primary" size="sm">
-              Get Started
-            </Button>
+        {/* Center: Links */}
+        <div className={styles.navLinks}>
+          <Link href="#features" className={styles.navLink}>Features</Link>
+          <Link href="#dashboard" className={styles.navLink}>Dashboard</Link>
+          <Link href="#pricing" className={styles.navLink}>Pricing</Link>
+          <Link href="#community" className={styles.navLink}>Community</Link>
+          <Link href="#resources" className={styles.navLink}>Resources</Link>
+        </div>
+
+        {/* Right: Actions */}
+        <div className={styles.navActions}>
+          <Link href="/login" className={styles.loginLink}>Login</Link>
+          <Link href="/register" className={styles.ctaButton}>
+            Get Started
           </Link>
         </div>
       </div>
-    </header>
+    </motion.nav>
   );
 }

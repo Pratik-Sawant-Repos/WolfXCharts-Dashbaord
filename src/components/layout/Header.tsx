@@ -1,16 +1,36 @@
 'use client';
 
-import React from 'react';
-import { Search, Bell, MessageSquare, SunMoon } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { Search, Bell, MessageSquare, SunMoon, User, Settings, LogOut, ChevronDown } from 'lucide-react';
 import { Button } from '../ui/Button/Button';
 import styles from './Header.module.css';
 
 export function Header() {
+  const router = useRouter();
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const profileRef = useRef<HTMLDivElement>(null);
+
   const toggleTheme = () => {
     const html = document.documentElement;
     const currentTheme = html.getAttribute('data-theme');
     html.setAttribute('data-theme', currentTheme === 'dark' ? 'light' : 'dark');
   };
+
+  const handleLogout = () => {
+    // Perform any logout logic here (clear cookies, etc.)
+    router.push('/login');
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (profileRef.current && !profileRef.current.contains(event.target as Node)) {
+        setIsProfileOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   return (
     <header className={styles.header}>
@@ -22,7 +42,7 @@ export function Header() {
             placeholder="Search commands, symbols, or trades..." 
             className={styles.searchInput}
           />
-          <span style={{ fontSize: '10px', color: 'var(--text-tertiary)', border: '1px solid var(--border-strong)', padding: '2px 4px', borderRadius: '4px' }}>⌘K</span>
+          <span style={{ fontSize: '10px', color: 'var(--text-secondary)', border: '1px solid var(--border-strong)', padding: '2px 4px', borderRadius: '4px' }}>⌘K</span>
         </div>
       </div>
 
@@ -36,7 +56,7 @@ export function Header() {
           <SunMoon size={18} />
         </button>
 
-        <button className={styles.iconButton}>
+        <button className={`${styles.iconButton} ${styles.hideOnMobile}`}>
           <MessageSquare size={18} />
         </button>
 
@@ -45,9 +65,47 @@ export function Header() {
           <span className={styles.badge} />
         </button>
 
-        <Button variant="primary" size="sm" style={{ marginLeft: '0.5rem' }}>
-          New Trade
-        </Button>
+        <div className={styles.hideOnMobile} style={{ marginLeft: '0.5rem' }}>
+          <Button variant="primary" size="sm">
+            New Trade
+          </Button>
+        </div>
+
+        <div className={styles.profileContainer} ref={profileRef}>
+          <button 
+            className={styles.profileBtn} 
+            onClick={() => setIsProfileOpen(!isProfileOpen)}
+          >
+            <div className={styles.avatarText}>
+              TP
+            </div>
+            <div className={styles.profileInfo}>
+              <span className={styles.profileName}>Trader Pro</span>
+              <span className={styles.profileRole}>Premium</span>
+            </div>
+            <ChevronDown size={14} className={styles.chevron} style={{ transform: isProfileOpen ? 'rotate(180deg)' : 'rotate(0)' }} />
+          </button>
+
+          {isProfileOpen && (
+            <div className={styles.dropdown}>
+              <div className={styles.dropdownHeader}>
+                <span className={styles.dropdownName}>Trader Pro</span>
+                <span className={styles.dropdownEmail}>trader@wolfxcharts.com</span>
+              </div>
+              <div className={styles.dropdownDivider} />
+              <button className={styles.dropdownItem}>
+                <User size={16} /> My Profile
+              </button>
+              <button className={styles.dropdownItem}>
+                <Settings size={16} /> Settings
+              </button>
+              <div className={styles.dropdownDivider} />
+              <button className={`${styles.dropdownItem} ${styles.logoutItem}`} onClick={handleLogout}>
+                <LogOut size={16} /> Logout
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     </header>
   );

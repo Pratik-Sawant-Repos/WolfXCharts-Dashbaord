@@ -1,17 +1,10 @@
 import React from 'react';
 import { Navigation } from '@/components/landing/Navigation';
-import { AnimatedBackground } from '@/components/landing/AnimatedBackground';
 import { HeroSection } from '@/components/landing/HeroSection';
-import { WhySection } from '@/components/landing/WhySection';
-import { InteractivePreview } from '@/components/landing/InteractivePreview';
-import { AnalyticsShowcase } from '@/components/landing/AnalyticsShowcase';
-import { 
-  CommunitySection, 
-  PricingSection, 
-  FAQSection, 
-  CTASection 
-} from '@/components/landing/ConversionSections';
-import { TestimonialsSection } from '@/components/landing/TestimonialsSection';
+import { FeaturesSection } from '@/components/landing/FeaturesSection';
+import { ShowcaseSection } from '@/components/landing/ShowcaseSection';
+import { StatisticsSection } from '@/components/landing/StatisticsSection';
+import { CTASection } from '@/components/landing/CTASection';
 import { Footer } from '@/components/landing/Footer';
 
 export default function LandingPage() {
@@ -19,16 +12,11 @@ export default function LandingPage() {
     <>
       <Navigation />
       
-      <main style={{ position: 'relative', background: 'var(--bg-primary)' }}>
-        <AnimatedBackground />
+      <main>
         <HeroSection />
-        <WhySection />
-        <InteractivePreview />
-        <AnalyticsShowcase />
-        <CommunitySection />
-        <TestimonialsSection />
-        <PricingSection />
-        <FAQSection />
+        <FeaturesSection />
+        <ShowcaseSection />
+        <StatisticsSection />
         <CTASection />
       </main>
 

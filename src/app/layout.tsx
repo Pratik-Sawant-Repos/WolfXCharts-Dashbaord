@@ -16,7 +16,7 @@ const jakarta = Plus_Jakarta_Sans({
 
 export const metadata: Metadata = {
   title: "WolfXCharts Pro",
-  description: "Premium Trading Journal and Analytics Platform",
+  description: "Professional trading journal and analytics platform built to help traders track performance, manage risk, and improve every decision.",
 };
 
 export default function RootLayout({
@@ -30,6 +30,9 @@ export default function RootLayout({
       className={`${inter.variable} ${jakarta.variable}`}
       data-theme="dark"
     >
+      <head>
+        <link href="https://api.fontshare.com/v2/css?f[]=general-sans@200,300,400,500,600,700&display=swap" rel="stylesheet" />
+      </head>
       <body>{children}</body>
     </html>
   );
